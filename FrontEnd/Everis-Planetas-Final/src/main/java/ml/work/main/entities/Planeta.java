@@ -1,10 +1,14 @@
 package ml.work.main.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "api_Planeta")
 public class Planeta {
@@ -21,6 +25,9 @@ public class Planeta {
 	@Column(name = "superficie_Planeta")
 	protected int superficie;
 
+	@OneToMany(mappedBy = "planeta")
+	protected List<Estrella> estrellas = new ArrayList<>();
+	
 	// Constructores
 	
 	public Planeta() {
@@ -43,6 +50,14 @@ public class Planeta {
 		this.id = id;
 		this.nombre = nombre;
 		this.superficie = superficie;
+	}
+	
+	public Planeta(Long id, String nombre, int superficie, List<Estrella> estrellas) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.superficie = superficie;
+		this.estrellas = estrellas;
 	}
 
 	// Getters & Setters
@@ -71,4 +86,15 @@ public class Planeta {
 	public void setSuperficie(int superficie) {
 		this.superficie = superficie;
 	}
+
+	public List<Estrella> getEstrellas() {
+		return estrellas;
+	}
+
+	public void setEstrellas(List<Estrella> estrellas) {
+		this.estrellas = estrellas;
+	}
+
+
+	
 }
