@@ -15,6 +15,8 @@ public class PlanetaDTO implements Serializable {
 	
 	protected int superficie;
 	
+	protected EstrellaDTO estrella;
+	
 	// Constructores
 	
 	public PlanetaDTO() {
@@ -37,6 +39,14 @@ public class PlanetaDTO implements Serializable {
 		this.id = id;
 		this.nombre = nombre;
 		this.superficie = superficie;
+	}
+
+	public PlanetaDTO(Long id, String nombre, int superficie, EstrellaDTO estrella) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.superficie = superficie;
+		this.estrella = estrella;
 	}
 
 	// Getters & Setters
@@ -65,4 +75,14 @@ public class PlanetaDTO implements Serializable {
 	public void setSuperficie(int superficie) {
 		this.superficie = superficie;
 	}
+
+	public EstrellaDTO getEstrella() {
+		return estrella;
+	}
+
+	public void setEstrella(EstrellaDTO estrella) {
+		this.estrella = estrella;
+	}
+	
+	
 }

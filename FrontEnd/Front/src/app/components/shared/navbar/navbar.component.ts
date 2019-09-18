@@ -1,19 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NavbarService} from '../../../services/navbar.service';
 
 @Component({
   selector: 'app-navbar',
-  template: `
-    <p>
-      navbar works!
-    </p>
-  `,
+  templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private nav: NavbarService) { }
 
   ngOnInit() {
   }
-
 }

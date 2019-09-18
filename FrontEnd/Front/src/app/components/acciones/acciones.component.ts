@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-acciones',
-  template: `
-    <p>
-      acciones works!
-    </p>
-  `,
+  templateUrl: './acciones.component.html',
   styleUrls: ['./acciones.component.css']
 })
 export class AccionesComponent implements OnInit {
 
-  constructor() { }
+  private resultado: string;
+
+  constructor(private route: ActivatedRoute) {
+    this.resultado = route.snapshot.url[0].path;
+  }
 
   ngOnInit() {
   }

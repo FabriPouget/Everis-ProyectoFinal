@@ -15,6 +15,8 @@ public class EstrellaDTO implements Serializable {
 	
 	protected Long densidad;
 	
+	protected PlanetaDTO planeta;
+	
 	// Constructores
 		public EstrellaDTO() {
 			super();
@@ -37,6 +39,14 @@ public class EstrellaDTO implements Serializable {
 			this.id = id;
 			this.nombre = nombre;
 			this.densidad = densidad;
+		}
+
+		public EstrellaDTO(Long id, String nombre, Long densidad, PlanetaDTO planeta) {
+			super();
+			this.id = id;
+			this.nombre = nombre;
+			this.densidad = densidad;
+			this.planeta = planeta;
 		}
 		
 		// Getters & Setters
@@ -64,5 +74,15 @@ public class EstrellaDTO implements Serializable {
 		public void setDensidad(Long densidad) {
 			this.densidad = densidad;
 		}
+
+		public PlanetaDTO getPlaneta() {
+			return planeta;
+		}
+
+		public void setPlaneta(PlanetaDTO planeta) {
+			this.planeta = planeta;
+		}
+		
+		
 		
 }

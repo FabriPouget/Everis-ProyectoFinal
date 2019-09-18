@@ -1,32 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedComponent } from './components/shared/shared.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { CrudPlanetaComponent } from './components/crud-planeta/crud-planeta.component';
-import { CrudEstrellaComponent } from './components/crud-estrella/crud-estrella.component';
-import { ActionsComponent } from './components/actions/actions.component';
 import { AccionesComponent } from './components/acciones/acciones.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+
+import {EstrellaServiceService} from './services/estrella-service.service';
+import {PlanetaServiceService} from './services/planeta-service.service';
+import { CrudComponent } from './components/crud/crud.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SharedComponent,
     NavbarComponent,
     HomeComponent,
-    CrudPlanetaComponent,
-    CrudEstrellaComponent,
-    ActionsComponent,
-    AccionesComponent
+    AccionesComponent,
+    FooterComponent,
+    CrudComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+
   ],
-  providers: [],
+  providers: [
+    EstrellaServiceService,
+    PlanetaServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
