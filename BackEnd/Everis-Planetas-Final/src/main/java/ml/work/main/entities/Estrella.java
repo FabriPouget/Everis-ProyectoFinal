@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity(name = "api_Estrella")
 public class Estrella {
 
@@ -20,7 +22,7 @@ public class Estrella {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_Estrella")
-	protected Long id;
+	protected int id;
 	
 	@Column(name = "nombre_Estrella")
 	protected String nombre;
@@ -28,8 +30,9 @@ public class Estrella {
 	@Column(name = "densidad_Estrella")
 	protected Long densidad;
 	
-	@OneToMany(mappedBy = "estrella")
-	protected List<Planeta> planetas = new ArrayList<>();
+	@OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonBackReference
+	protected List<Planeta> planetas;
 	
 	// Constructores
 	
@@ -39,14 +42,14 @@ public class Estrella {
 	
 	
 
-	public Estrella(Long id) {
+	public Estrella(int id) {
 		super();
 		this.id = id;
 	}
 
 
 
-	public Estrella(Long id, String nombre) {
+	public Estrella(int id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -54,7 +57,7 @@ public class Estrella {
 
 
 
-	public Estrella(Long id, String nombre, Long densidad) {
+	public Estrella(int id, String nombre, Long densidad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -63,7 +66,7 @@ public class Estrella {
 	
 	
 
-	public Estrella(Long id, String nombre, Long densidad, List<Planeta> planetas) {
+	public Estrella(int id, String nombre, Long densidad, List<Planeta> planetas) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -75,11 +78,11 @@ public class Estrella {
 
 	// Getters & Setters
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

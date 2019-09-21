@@ -6,12 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity(name = "api_Planeta")
 public class Planeta {
@@ -20,7 +24,7 @@ public class Planeta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_Planeta")
-	protected Long id;
+	protected int id;
 	
 	@Column(name = "nombre_Planeta")
 	protected String nombre;
@@ -28,7 +32,7 @@ public class Planeta {
 	@Column(name = "superficie_Planeta")
 	protected int superficie;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "fk_estrella")
 	protected Estrella estrella;
 	
@@ -38,7 +42,7 @@ public class Planeta {
 		super();
 	}
 
-	public Planeta(Long id) {
+	public Planeta(int id) {
 		super();
 		this.id = id;
 	}
@@ -49,7 +53,7 @@ public class Planeta {
 		this.superficie = superficie;
 	}
 	
-	public Planeta(Long id, String nombre, int superficie) {
+	public Planeta(int id, String nombre, int superficie) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -58,7 +62,7 @@ public class Planeta {
 	
 
 
-	public Planeta(Long id, String nombre, int superficie, Estrella estrella) {
+	public Planeta(int id, String nombre, int superficie, Estrella estrella) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -69,11 +73,11 @@ public class Planeta {
 	// Getters & Setters
 	
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

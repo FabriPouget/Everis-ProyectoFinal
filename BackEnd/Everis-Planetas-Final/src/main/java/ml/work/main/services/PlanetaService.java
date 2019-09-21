@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import ml.work.main.dtos.PlanetaDTO;
 import ml.work.main.entities.Planeta;
 import ml.work.main.repositories.PlanetaRepository;
@@ -39,6 +40,7 @@ public class PlanetaService implements ServiceInterface<PlanetaDTO>{
 			result.setId(resultBD.getId());
 			result.setNombre(resultBD.getNombre());
 			result.setSuperficie(resultBD.getSuperficie());
+			result.setEstrella(resultBD.getEstrella());
 			
 		}catch(Exception e){
 			System.err.print(e.getMessage());
@@ -48,13 +50,13 @@ public class PlanetaService implements ServiceInterface<PlanetaDTO>{
 	}
 
 	@Override
-	public PlanetaDTO create(PlanetaDTO body) {
-			Planeta temp = new Planeta();
-		
+	public PlanetaDTO create(PlanetaDTO body) {	
 		try {
+			Planeta temp = new Planeta();
 			
 			temp.setNombre(body.getNombre());
 			temp.setSuperficie(body.getSuperficie());
+			temp.setEstrella(body.getEstrella());
 			
 			pRepo.save(temp);
 			
@@ -74,6 +76,7 @@ public class PlanetaService implements ServiceInterface<PlanetaDTO>{
 			nuevo = temp.get();
 			nuevo.setNombre(body.getNombre());
 			nuevo.setSuperficie(body.getSuperficie());
+			nuevo.setEstrella(body.getEstrella());
 			
 			pRepo.save(nuevo);
 			
@@ -83,7 +86,7 @@ public class PlanetaService implements ServiceInterface<PlanetaDTO>{
 		
 		return body;
 	}
-
+	
 	@Override
 	public void delete(int id) {
 		pRepo.deleteById(id);

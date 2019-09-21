@@ -19,46 +19,39 @@ export class CrudComponent implements OnInit {
   private planetas: PlanetaInterface [];
   private estrellas: EstrellaInterface [];
 
-  constructor( private planetaService: PlanetaServiceService, private estrellaService: EstrellaServiceService,
-               private router: Router, private nav: NavbarService, private modalService: NgbModal) {
+  constructor(private planetaService: PlanetaServiceService, private estrellaService: EstrellaServiceService,
+              private router: Router, private nav: NavbarService, private modalService: NgbModal) {
   }
 
   ngOnInit() {
-      this.resultado = localStorage.getItem('clave');
+    this.resultado = localStorage.getItem('clave');
 
-      this.nav.getClave().subscribe(data => {
-        this.resultado = data;
-        localStorage.setItem('clave' , this.resultado);
-      });
+    this.nav.getClave().subscribe(data => {
+      this.resultado = data;
+      localStorage.setItem('clave', this.resultado);
+    });
 
-      if (this.resultado === 'planeta') {
-      this.planetaService.ListarPlanetas().subscribe(data => {
-        this.planetas = data;
-      });
-    } else if (this.resultado === 'estrella') {
-      this.estrellaService.ListarEstrella().subscribe(data => {
-        this.estrellas = data;
-      });
-    }
+    this.planetaService.ListarPlanetas().subscribe(data => {
+      this.planetas = data;
+    });
+
   }
 
-  Nuevo() {
+Nuevo() {
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.title = 'About';
   }
 
-  Acciones(object, tipo): void {
+Acciones(object, tipo): void {
     const bid: string = (tipo.target as Element).id;
 
     switch (bid) {
       case 'starEdit':
         localStorage.setItem('id', object.id.toString());
-        this.router.navigate(['modal']);
         break;
 
       case 'planetEdit':
         localStorage.setItem('id', object.id.toString());
-        this.router.navigate(['modal']);
         break;
 
       case 'starDelete':

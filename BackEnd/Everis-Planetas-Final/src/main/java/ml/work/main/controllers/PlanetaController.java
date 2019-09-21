@@ -30,8 +30,15 @@ public class PlanetaController {
 	@CrossOrigin("*")
 	@GetMapping("/")
 	@ResponseStatus(HttpStatus.OK)
-	public List<Planeta> lista_personas(){
+	public List<Planeta> lista_planetas(){
 		return (List<Planeta>) planetaService.listar();
+	}
+	
+	@CrossOrigin("*")
+	@GetMapping("/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public PlanetaDTO getOne(@PathVariable int id) { // Con la anotacion @PathVariable convierto al parametro en un objeto de tipo integer.
+		return (PlanetaDTO) planetaService.getOne(id);
 	}
 	
 	@PostMapping("/")

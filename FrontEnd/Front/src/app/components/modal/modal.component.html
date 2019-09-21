@@ -38,22 +38,25 @@
             <input type="text" class="form-control" id="PlanetID" disabled placeholder="">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Nombre:</label>
-            <input type="text" class="form-control" id="PlanetName" placeholder="Ingrese el Nombre del Planeta" [(ngModel)]="">
+            <label >Nombre:</label>
+            <input type="text" class="form-control" id="PlanetName" placeholder="Ingrese el Nombre del Planeta">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Superficie:</label>
+            <label >Superficie:</label>
             <input type="text" class="form-control" id="PlanetSup" placeholder="Ingrese la Superficie del Planeta">
           </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="Star">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <label >Estrella:</label>
+          <select class="form-control form-control-sm">
+            <div *ngFor="let estrella of estrellas">
+              <option>{{estrella.nombre}}</option>
+            </div>
+          </select>
+
         </form>
       </div>
     </div>
     <div class="modal-footer">
+        <button (click)='Submit()' class="btn btn-primary">Submit</button>
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
     </div>
   </div>

@@ -39,6 +39,7 @@ public class EstrellaService implements ServiceInterface<EstrellaDTO> {
 			result.setId(resultBD.getId());
 			result.setNombre(resultBD.getNombre());
 			result.setDensidad(resultBD.getDensidad());
+			result.setPlanetas(resultBD.getPlanetas());
 			
 		}catch(Exception e){
 			System.err.print(e.getMessage());
@@ -55,6 +56,7 @@ public class EstrellaService implements ServiceInterface<EstrellaDTO> {
 			
 			temp.setNombre(body.getNombre());
 			temp.setDensidad(body.getDensidad());
+			temp.setPlanetas(body.getPlanetas());
 			
 			pRepo.save(temp);
 			
@@ -74,6 +76,7 @@ public class EstrellaService implements ServiceInterface<EstrellaDTO> {
 			nuevo = temp.get();
 			nuevo.setNombre(body.getNombre());
 			nuevo.setDensidad(body.getDensidad());
+			nuevo.setPlanetas(body.getPlanetas());
 			
 			pRepo.save(nuevo);
 			

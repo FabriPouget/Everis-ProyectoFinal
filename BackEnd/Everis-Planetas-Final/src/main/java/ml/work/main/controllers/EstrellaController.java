@@ -34,6 +34,13 @@ public class EstrellaController {
 			return (List<Estrella>) estrellaService.listar();
 		}
 		
+		@CrossOrigin("*")
+		@GetMapping("/{id}")
+		@ResponseStatus(HttpStatus.OK)
+		public EstrellaDTO getOne(@PathVariable int id) { // Con la anotacion @PathVariable convierto al parametro en un objeto de tipo integer.
+			return (EstrellaDTO) estrellaService.getOne(id);
+		}
+		
 		@PostMapping("/")
 		@ResponseStatus(HttpStatus.CREATED)
 		public EstrellaDTO create(@RequestBody EstrellaDTO body) {

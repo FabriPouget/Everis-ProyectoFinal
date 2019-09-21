@@ -1,5 +1,3 @@
-
-
 export interface EstrellaInterface {
   id: number;
   nombre: string;

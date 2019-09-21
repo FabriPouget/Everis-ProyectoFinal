@@ -14,6 +14,7 @@ import {PlanetaServiceService} from './services/planeta-service.service';
 import { CrudComponent } from './components/crud/crud.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NavbarService} from './services/navbar.service';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {NavbarService} from './services/navbar.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [
     EstrellaServiceService,

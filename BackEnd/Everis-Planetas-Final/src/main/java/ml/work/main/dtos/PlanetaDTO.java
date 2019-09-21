@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import ml.work.main.entities.Estrella;
+
 public class PlanetaDTO implements Serializable {
 
 	/**
@@ -11,13 +13,13 @@ public class PlanetaDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected Long id;
+	protected int id;
 	
 	protected String nombre;
 	
 	protected int superficie;
 	
-	protected EstrellaDTO estrella; 
+	protected Estrella estrella; 
 	
 	// Constructores
 	
@@ -25,7 +27,7 @@ public class PlanetaDTO implements Serializable {
 		super();
 	}
 
-	public PlanetaDTO(Long id) {
+	public PlanetaDTO(int id) {
 		super();
 		this.id = id;
 	}
@@ -36,14 +38,14 @@ public class PlanetaDTO implements Serializable {
 		this.superficie = superficie;
 	}
 	
-	public PlanetaDTO(Long id, String nombre, int superficie) {
+	public PlanetaDTO(int id, String nombre, int superficie) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.superficie = superficie;
 	}
 
-	public PlanetaDTO(Long id, String nombre, int superficie, EstrellaDTO estrella) {
+	public PlanetaDTO(int id, String nombre, int superficie, Estrella estrella) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -54,11 +56,11 @@ public class PlanetaDTO implements Serializable {
 	// Getters & Setters
 	
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -78,11 +80,11 @@ public class PlanetaDTO implements Serializable {
 		this.superficie = superficie;
 	}
 
-	public EstrellaDTO getEstrella() {
+	public Estrella getEstrella() {
 		return estrella;
 	}
 
-	public void setEstrella(EstrellaDTO estrella) {
+	public void setEstrella(Estrella estrella) {
 		this.estrella = estrella;
 	}
 	
