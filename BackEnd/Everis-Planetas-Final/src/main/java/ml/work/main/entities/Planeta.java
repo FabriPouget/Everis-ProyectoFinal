@@ -3,11 +3,14 @@ package ml.work.main.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "api_Planeta")
@@ -24,9 +27,10 @@ public class Planeta {
 	
 	@Column(name = "superficie_Planeta")
 	protected int superficie;
-
-	@OneToMany(mappedBy = "planeta")
-	protected List<Estrella> estrellas = new ArrayList<>();
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_estrella")
+	protected Estrella estrella;
 	
 	// Constructores
 	
@@ -52,12 +56,14 @@ public class Planeta {
 		this.superficie = superficie;
 	}
 	
-	public Planeta(Long id, String nombre, int superficie, List<Estrella> estrellas) {
+
+
+	public Planeta(Long id, String nombre, int superficie, Estrella estrella) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.superficie = superficie;
-		this.estrellas = estrellas;
+		this.estrella = estrella;
 	}
 
 	// Getters & Setters
@@ -87,13 +93,15 @@ public class Planeta {
 		this.superficie = superficie;
 	}
 
-	public List<Estrella> getEstrellas() {
-		return estrellas;
+	public Estrella getEstrella() {
+		return estrella;
 	}
 
-	public void setEstrellas(List<Estrella> estrellas) {
-		this.estrellas = estrellas;
+	public void setEstrella(Estrella estrella) {
+		this.estrella = estrella;
 	}
+
+	
 
 
 	

@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ml.work.main.dtos.EstrellaDTO;
 import ml.work.main.entities.Estrella;
 import ml.work.main.repositories.EstrellaRepository;
 
+@Service
 public class EstrellaService implements ServiceInterface<EstrellaDTO> {
 
 	@Autowired

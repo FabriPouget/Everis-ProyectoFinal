@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { AccionesComponent } from './components/acciones/acciones.component';
+import { ModalComponent } from './components/modal/modal.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 
 import {EstrellaServiceService} from './services/estrella-service.service';
 import {PlanetaServiceService} from './services/planeta-service.service';
 import { CrudComponent } from './components/crud/crud.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NavbarService} from './services/navbar.service';
 
 
 @NgModule({
@@ -19,7 +21,7 @@ import { CrudComponent } from './components/crud/crud.component';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    AccionesComponent,
+    ModalComponent,
     FooterComponent,
     CrudComponent
   ],
@@ -27,11 +29,12 @@ import { CrudComponent } from './components/crud/crud.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
+    NgbModule
   ],
   providers: [
     EstrellaServiceService,
-    PlanetaServiceService
+    PlanetaServiceService,
+    NavbarService,
   ],
   bootstrap: [AppComponent]
 })

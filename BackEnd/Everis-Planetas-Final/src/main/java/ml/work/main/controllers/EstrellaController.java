@@ -19,15 +19,14 @@ import ml.work.main.dtos.EstrellaDTO;
 import ml.work.main.entities.Estrella;
 import ml.work.main.services.EstrellaService;
 
+@RestController
+@CrossOrigin("*")
+@RequestMapping(path="/api/v1/estrellas")
 public class EstrellaController {
-	@RestController
-	@CrossOrigin("*")
-	@RequestMapping(path="/api/v1/estrellas")
-	public class PlanetaController {
 
 		@Autowired
 		private EstrellaService estrellaService;
-		
+
 		@CrossOrigin("*")
 		@GetMapping("/")
 		@ResponseStatus(HttpStatus.OK)
@@ -52,5 +51,5 @@ public class EstrellaController {
 		public void delete(@PathVariable int id) {
 			estrellaService.delete(id);
 		}
-	}
+		
 }

@@ -1,6 +1,8 @@
 package ml.work.main.dtos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EstrellaDTO implements Serializable {
 
@@ -15,7 +17,7 @@ public class EstrellaDTO implements Serializable {
 	
 	protected Long densidad;
 	
-	protected PlanetaDTO planeta;
+	protected List<PlanetaDTO> planetas = new ArrayList<>();
 	
 	// Constructores
 		public EstrellaDTO() {
@@ -41,14 +43,16 @@ public class EstrellaDTO implements Serializable {
 			this.densidad = densidad;
 		}
 
-		public EstrellaDTO(Long id, String nombre, Long densidad, PlanetaDTO planeta) {
+
+		
+		public EstrellaDTO(Long id, String nombre, Long densidad, List<PlanetaDTO> planetas) {
 			super();
 			this.id = id;
 			this.nombre = nombre;
 			this.densidad = densidad;
-			this.planeta = planeta;
+			this.planetas = planetas;
 		}
-		
+
 		// Getters & Setters
 
 		public Long getId() {
@@ -75,13 +79,17 @@ public class EstrellaDTO implements Serializable {
 			this.densidad = densidad;
 		}
 
-		public PlanetaDTO getPlaneta() {
-			return planeta;
+
+		public List<PlanetaDTO> getPlanetas() {
+			return planetas;
 		}
 
-		public void setPlaneta(PlanetaDTO planeta) {
-			this.planeta = planeta;
+
+		public void setPlanetas(List<PlanetaDTO> planetas) {
+			this.planetas = planetas;
 		}
+
+		
 		
 		
 		

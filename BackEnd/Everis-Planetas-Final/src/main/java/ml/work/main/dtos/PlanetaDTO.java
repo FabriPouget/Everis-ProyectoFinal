@@ -1,6 +1,8 @@
 package ml.work.main.dtos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlanetaDTO implements Serializable {
 
@@ -15,7 +17,7 @@ public class PlanetaDTO implements Serializable {
 	
 	protected int superficie;
 	
-	protected EstrellaDTO estrella;
+	protected EstrellaDTO estrella; 
 	
 	// Constructores
 	

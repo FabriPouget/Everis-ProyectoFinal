@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card">
     <div class="container">
-      <button (click)="Nuevo()" class="btn btn-info" style="margin-left: 10px; ">Nuevo Registro</button>
+      <button (click)="Nuevo()" class="btn btn-info new" style="margin-left: 10px; ">Nuevo Registro</button>
     </div>
     <div class="card-body">
       <table class="table table-hover">
@@ -11,29 +11,31 @@
           <th>Nombre</th>
           <th *ngIf="resultado == 'planeta'">Superficie</th>
           <th *ngIf="resultado == 'estrella'">Densidad</th>
+          <th *ngIf="resultado == 'planeta'">Estrella</th>
         </tr>
         </thead>
         <tbody>
-        <div *ngIf="resultado === 'planeta'">
+        <div *ngIf="resultado === 'estrella'">
           <tr *ngFor="let estrella of estrellas " class="text-center">
             <td>{{estrella.id}}</td>
             <td>{{estrella.nombre}}</td>
             <td>{{estrella.densidad}}</td>
             <td>
-              <button (click)="Editar2(estrella)" class="btn btn-warning">Editar</button>
-              <button (click)="Eliminar2(estrella)" class="btn btn-danger">Borrar</button>
+              <button id='starEdit' (click)="Acciones(estrella, $event)" class="btn btn-warning">Editar</button>
+              <button id='starDelete' (click)="Acciones(estrella, $event)" class="btn btn-danger">Borrar</button>
             </td>
           </tr>
         </div>
 
-        <div *ngIf="resultado === 'estrella'">
+        <div *ngIf="resultado === 'planeta'">
           <tr *ngFor="let planeta of planetas " class="text-center">
             <td>{{planeta.id}}</td>
             <td>{{planeta.nombre}}</td>
             <td>{{planeta.superficie}}</td>
+            <td>{{planeta.estrella}}</td>
             <td>
-              <button (click)="Editar(planeta)" class="btn btn-warning">Editar</button>
-              <button (click)="Eliminar(planeta)" class="btn btn-danger">Borrar</button>
+              <button id='planetEdit' (click)="Acciones(planeta, $event)" class="btn btn-warning">Editar</button>
+              <button id='planetDelete' (click)="Acciones(planeta, $event)" class="btn btn-danger">Borrar</button>
             </td>
           </tr>
         </div>

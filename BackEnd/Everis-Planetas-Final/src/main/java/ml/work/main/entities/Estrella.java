@@ -1,5 +1,8 @@
 package ml.work.main.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity(name = "api_Estrella")
 public class Estrella {
@@ -24,9 +28,8 @@ public class Estrella {
 	@Column(name = "densidad_Estrella")
 	protected Long densidad;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "fk_Planeta")
-	protected Planeta planeta;
+	@OneToMany(mappedBy = "estrella")
+	protected List<Planeta> planetas = new ArrayList<>();
 	
 	// Constructores
 	
@@ -57,16 +60,18 @@ public class Estrella {
 		this.nombre = nombre;
 		this.densidad = densidad;
 	}
+	
+	
 
-
-
-	public Estrella(Long id, String nombre, Long densidad, Planeta planeta) {
+	public Estrella(Long id, String nombre, Long densidad, List<Planeta> planetas) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.densidad = densidad;
-		this.planeta = planeta;
+		this.planetas = planetas;
 	}
+
+
 
 	// Getters & Setters
 
@@ -94,12 +99,16 @@ public class Estrella {
 		this.densidad = densidad;
 	}
 
-	public Planeta getPlaneta() {
-		return planeta;
+	public List<Planeta> getPlanetas() {
+		return planetas;
 	}
 
-	public void setPlaneta(Planeta planeta) {
-		this.planeta = planeta;
+
+
+	public void setPlanetas(List<Planeta> planetas) {
+		this.planetas = planetas;
 	}
+	
+	
 	
 }
