@@ -24,22 +24,24 @@ export class CrudComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resultado = localStorage.getItem('clave');
-
     this.nav.getClave().subscribe(data => {
       this.resultado = data;
-      localStorage.setItem('clave', this.resultado);
     });
 
     this.planetaService.ListarPlanetas().subscribe(data => {
-      this.planetas = data;
-    });
+        this.planetas = data;
+      });
+
+    this.estrellaService.ListarEstrella().subscribe(data => {
+        this.estrellas = data;
+      });
 
   }
 
 Nuevo() {
+    localStorage.clear();
     const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.title = 'About';
+    modalRef.componentInstance.title = 'New';
   }
 
 Acciones(object, tipo): void {
@@ -47,11 +49,17 @@ Acciones(object, tipo): void {
 
     switch (bid) {
       case 'starEdit':
+        localStorage.setItem('modal', bid);
         localStorage.setItem('id', object.id.toString());
+        const modalE = this.modalService.open(ModalComponent);
+        modalE.componentInstance.title = 'starEdit';
         break;
 
       case 'planetEdit':
+        localStorage.setItem('modal', bid);
         localStorage.setItem('id', object.id.toString());
+        const modalP = this.modalService.open(ModalComponent);
+        modalP.componentInstance.title = 'planetEdit';
         break;
 
       case 'starDelete':
@@ -67,29 +75,4 @@ Acciones(object, tipo): void {
         break;
     }
   }
-/*
-  Editar(planeta: PlanetaInterface) {
-    localStorage.setItem('id', planeta.id.toString());
-    this.router.navigate(['modal']);
-  }
-
-  Eliminar(planeta: PlanetaInterface) {
-    this.planetaService.EliminarPlaneta(planeta)
-      .subscribe(data =>
-        this.planetas = this.planetas.filter(p => p !== planeta));
-    alert('Planeta eliminado exitosamente');
-  }
-
-  Editar2(estrella: EstrellaInterface) {
-    localStorage.setItem('id', estrella.id.toString());
-    this.router.navigate(['modal']);
-  }
-
-  Eliminar2(estrella: EstrellaInterface) {
-    this.estrellaService.EliminarEstrella(estrella)
-      .subscribe(data =>
-        this.estrellas = this.estrellas.filter(p => p !== estrella));
-    alert('Estrella eliminada exitosamente');
-  }
-*/
 }

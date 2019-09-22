@@ -4,20 +4,21 @@
       <button (click)="Nuevo()" class="btn btn-info new" style="margin-left: 10px; ">Nuevo Registro</button>
     </div>
     <div class="card-body">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>ID</th>
+      <table class="table table-info table-striped">
+        <thead class="thead-dark">
+        <tr class="text-center">
+          <th>#</th>
           <th>Nombre</th>
           <th *ngIf="resultado == 'planeta'">Superficie</th>
           <th *ngIf="resultado == 'estrella'">Densidad</th>
           <th *ngIf="resultado == 'planeta'">Estrella</th>
+          <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
-        <div *ngIf="resultado === 'estrella'">
-          <tr *ngFor="let estrella of estrellas " class="text-center">
-            <td>{{estrella.id}}</td>
+        <ng-container *ngIf="resultado === 'estrella'">
+          <tr *ngFor="let estrella of estrellas, let i = index " class="text-center">
+            <td>{{i+1}}</td>
             <td>{{estrella.nombre}}</td>
             <td>{{estrella.densidad}}</td>
             <td>
@@ -25,20 +26,21 @@
               <button id='starDelete' (click)="Acciones(estrella, $event)" class="btn btn-danger">Borrar</button>
             </td>
           </tr>
-        </div>
+        </ng-container>
 
-        <div *ngIf="resultado === 'planeta'">
-          <tr *ngFor="let planeta of planetas " class="text-center">
-            <td>{{planeta.id}}</td>
+        <ng-container *ngIf="resultado === 'planeta'">
+          <tr *ngFor="let planeta of planetas, let i = index" class="text-center">
+            <td>{{i+1}}</td>
             <td>{{planeta.nombre}}</td>
             <td>{{planeta.superficie}}</td>
-            <td>{{planeta.estrella}}</td>
+            <td *ngIf="planeta.estrella == null">Sin Estrella</td>
+            <td *ngIf="planeta.estrella !== null">{{planeta.estrella.nombre}}</td>
             <td>
               <button id='planetEdit' (click)="Acciones(planeta, $event)" class="btn btn-warning">Editar</button>
               <button id='planetDelete' (click)="Acciones(planeta, $event)" class="btn btn-danger">Borrar</button>
             </td>
           </tr>
-        </div>
+        </ng-container>
         </tbody>
       </table>
     </div>

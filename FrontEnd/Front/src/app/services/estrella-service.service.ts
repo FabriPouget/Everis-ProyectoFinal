@@ -20,7 +20,7 @@ export class EstrellaServiceService {
   }
 
   CrearEstrella(estrella: EstrellaInterface) {
-    return this.http.post<EstrellaInterface>(this.url + '', estrella);
+    return this.http.post<EstrellaInterface>(this.url + '/', estrella);
   }
 
   EditarEstrella(estrella: EstrellaInterface) {

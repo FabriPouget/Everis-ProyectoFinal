@@ -1,59 +1,63 @@
 <div role="document" class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <div *ngIf="this.resultado == 'estrella'">
-        <h4 class="modal-title">Nueva Estrella</h4>
-      </div>
+        <h4 *ngIf="this.resultado == 'estrella'&& this.key != 'starEdit'" class="modal-title">Nueva Estrella</h4>
+        <h4 *ngIf="this.key == 'starEdit' && this.resultado == 'estrella'" class="modal-title">Modificar Estrella</h4>
 
-      <div *ngIf="this.resultado == 'planeta'">
-        <h4 class="modal-title">Nuevo Planeta</h4>
-      </div>
+        <h4 *ngIf="this.resultado == 'planeta' && this.key != 'planetEdit'" class="modal-title">Nuevo Planeta</h4>
+        <h4 *ngIf="this.key == 'planetEdit' && this.resultado == 'planeta'" class="modal-title">Modificar Planeta</h4>
+
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <div *ngIf="this.resultado == 'estrella'">
+      <ng-container *ngIf="this.resultado == 'estrella'">
         <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-      <div *ngIf="this.resultado == 'planeta'">
-        <form>
-          <div class="form-group">
+          <div *ngIf="this.key == 'starEdit' && this.resultado == 'estrella'" class="form-group">
             <label >ID</label>
-            <input type="text" class="form-control" id="PlanetID" disabled placeholder="">
+            <input type="text" class="form-control" id="StarID" disabled placeholder="{{id}}">
           </div>
           <div class="form-group">
             <label >Nombre:</label>
-            <input type="text" class="form-control" id="PlanetName" placeholder="Ingrese el Nombre del Planeta">
+            <input *ngIf="this.resultado == 'estrella'&& this.key != 'starEdit'" type="text" class="form-control" id="StarName" placeholder="Ingrese el Nombre de la Estrella" name="nombre" [(ngModel)]="estrella.nombre" >
+            <input *ngIf="this.key == 'starEdit' && this.resultado == 'estrella'" type="text" class="form-control" id="EditStarN" placeholder="{{EdEstrella.nombre}}" name="nombre" [(ngModel)]="EdEstrella.nombre">
           </div>
           <div class="form-group">
+            <label >Densidad:</label>
+            <input *ngIf="this.resultado == 'estrella'&& this.key != 'starEdit'" type="text" class="form-control" id="StarDens" placeholder="Ingrese la Densidad de la Estrella" name="densidad" [(ngModel)]="estrella.densidad">
+            <input *ngIf="this.key == 'starEdit' && this.resultado == 'estrella'" type="text" class="form-control" id="EditStarD" placeholder="{{EdEstrella.densidad}}" name="densidad" [(ngModel)]="EdEstrella.densidad">
+          </div>
+        </form>
+      </ng-container>
+
+      <ng-container *ngIf="this.resultado == 'planeta'">
+        <form>
+          <div *ngIf="this.key == 'planetEdit' && this.resultado == 'planeta'" class="form-group">
+            <label >ID</label>
+            <input type="text" class="form-control" id="PlanetID" disabled placeholder="{{id}}">
+          </div>
+
+          <div class="form-group">
+            <label >Nombre:</label>
+            <input *ngIf="this.resultado == 'planeta' && this.key != 'planetEdit'" type="text" class="form-control" id="PlanetName" placeholder="Ingrese el Nombre del Planeta" name="nombre" [(ngModel)]="planeta.nombre">
+            <input *ngIf="this.key == 'planetEdit' && this.resultado == 'planeta'" type="text" class="form-control" id="EditPlanetN" placeholder="{{EdPlaneta.nombre}}" name="nombre" [(ngModel)]="EdPlaneta.nombre">
+          </div>
+
+          <div class="form-group">
             <label >Superficie:</label>
-            <input type="text" class="form-control" id="PlanetSup" placeholder="Ingrese la Superficie del Planeta">
+            <input *ngIf="this.resultado == 'planeta' && this.key != 'planetEdit'" type="text" class="form-control" id="PlanetSup" placeholder="Ingrese la Superficie del Planeta" name="superficie" [(ngModel)]="planeta.superficie">
+            <input *ngIf="this.key == 'planetEdit' && this.resultado == 'planeta'" type="text" class="form-control" id="EditPlanetS" placeholder="{{EdPlaneta.superficie}}" name="superficie" [(ngModel)]="EdPlaneta.superficie">
           </div>
           <label >Estrella:</label>
-          <select class="form-control form-control-sm">
-            <div *ngFor="let estrella of estrellas">
-              <option>{{estrella.nombre}}</option>
-            </div>
+            <select *ngIf="this.resultado == 'planeta' && this.key != 'planetEdit'" [(ngModel)]="planeta.estrella" name="estrella" class="form-control form-control-sm">
+                <option  *ngFor="let estrella of estrellas" [ngValue]="estrella">{{estrella.nombre}}</option >
+            </select>
+          <select *ngIf="this.key == 'planetEdit' && this.resultado == 'planeta'" [(ngModel)]="EdPlaneta.estrella" name="estrella" class="form-control form-control-sm">
+            <option  *ngFor="let estrella of estrellas" [ngValue]="estrella">{{estrella.nombre}}</option >
           </select>
-
         </form>
-      </div>
+      </ng-container>
     </div>
     <div class="modal-footer">
         <button (click)='Submit()' class="btn btn-primary">Submit</button>

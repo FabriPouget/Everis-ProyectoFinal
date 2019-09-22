@@ -30,7 +30,7 @@ public class Estrella {
 	@Column(name = "densidad_Estrella")
 	protected Long densidad;
 	
-	@OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL)
 	@JsonBackReference
 	protected List<Planeta> planetas;
 	

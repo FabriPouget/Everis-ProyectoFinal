@@ -19,7 +19,7 @@ export class PlanetaServiceService {
   }
 
   CrearPlaneta(planeta: PlanetaInterface) {
-    return this.http.post<PlanetaInterface>(this.url + '', planeta);
+    return this.http.post<PlanetaInterface>(this.url + '/', planeta);
   }
 
   EditarPlaneta(planeta: PlanetaInterface) {
